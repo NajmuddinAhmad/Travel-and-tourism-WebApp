@@ -117,15 +117,6 @@ travel-tourism-management/
 ├── README.md                           # Project documentation (this file)
 
 
-Contributing
-
-We welcome contributions to improve the Travel and Tourism Management System. If you'd like to contribute, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Implement your changes.
-4. Run tests (if any).
-5. Submit a pull request with a clear description of the changes.
 
 
 Feel free to reach out if you have any questions or need further assistance!
