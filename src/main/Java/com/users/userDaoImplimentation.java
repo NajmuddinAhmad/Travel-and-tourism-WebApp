@@ -6,9 +6,9 @@ import java.util.List;
 
 public class userDaoImplimentation implements UserDao {
 
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/your_database";
-    private static final String JDBC_USER = "your_username";
-    private static final String JDBC_PASSWORD = "your_password";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/Tourism_App";
+    private static final String JDBC_USER = "root";
+    private static final String JDBC_PASSWORD = "Mdraja@786";
 
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
@@ -16,7 +16,7 @@ public class userDaoImplimentation implements UserDao {
 
     @Override
     public void addUser(User user) {
-        String sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, user.getusername());
@@ -39,9 +39,9 @@ public class userDaoImplimentation implements UserDao {
             if (resultSet.next()) {
                 return new User(
                         resultSet.getInt("id"),
-                        resultSet.getString("name"),
+                        resultSet.getString("username"),
                         resultSet.getString("email"),
-                        resultSet.getInt("age")
+                        resultSet.getString("password")
                 );
             }
         } catch (SQLException e) {
@@ -62,7 +62,7 @@ public class userDaoImplimentation implements UserDao {
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
                         resultSet.getString("email"),
-                        resultSet.getInt("age")
+                        resultSet.getString("password")
                 );
                 users.add(user);
             }
@@ -77,10 +77,10 @@ public class userDaoImplimentation implements UserDao {
         String sql = "UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?";
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, user.getusername());
+            statement.setInt(1, user.getuser_id());
             statement.setString(2, user.getemail());
             statement.setString(3, user.getpassword());
-            statement.setInt(4, user.getuser_id());
+            statement.setString(4, user.getpassword());
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("User updated: " + user);
