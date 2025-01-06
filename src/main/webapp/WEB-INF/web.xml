@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-                             http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-         version="3.0">
+<web-app version="5.0" xmlns="http://jakarta.ee/xml/ns/jakartaee">
+    
+    <display-name>Tourism Management System</display-name>
 
-    <display-name>TripPlanner</display-name>
-
-    <!-- Welcome File List -->
+    <!-- Welcome Page -->
     <welcome-file-list>
-        <welcome-file>signup.jsp</welcome-file> <!-- Make signup.jsp the first page -->
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    
+    <!-- Encoding Filter -->
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>jakarta.servlet.Filter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
-   
+    <!-- Signup Servlet -->
     <servlet>
         <servlet-name>SignupServlet</servlet-name>
         <servlet-class>com.users.SignupServlet</servlet-class>
@@ -22,7 +32,7 @@
         <url-pattern>/signup</url-pattern>
     </servlet-mapping>
 
-   
+    <!-- Login Servlet -->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.users.LoginServlet</servlet-class>
@@ -32,14 +42,41 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
-    
+    <!-- Admin Dashboard Servlets -->
     <servlet>
-        <servlet-name>HomeServlet</servlet-name>
-        <servlet-class>com.users.HomeServlet</servlet-class>
+        <servlet-name>AdminDestinationsServlet</servlet-name>
+        <servlet-class>com.admin.AdminDestinationsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>HomeServlet</servlet-name>
-        <url-pattern>/home</url-pattern>
+        <servlet-name>AdminDestinationsServlet</servlet-name>
+        <url-pattern>/admin_destinations</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminPackagesServlet</servlet-name>
+        <servlet-class>com.admin.AdminPackagesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminPackagesServlet</servlet-name>
+        <url-pattern>/admin_packages</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminBookingsServlet</servlet-name>
+        <servlet-class>com.admin.AdminBookingsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminBookingsServlet</servlet-name>
+        <url-pattern>/admin_bookings</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminReviewsServlet</servlet-name>
+        <servlet-class>com.admin.AdminReviewsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminReviewsServlet</servlet-name>
+        <url-pattern>/admin_reviews</url-pattern>
     </servlet-mapping>
 
 </web-app>
